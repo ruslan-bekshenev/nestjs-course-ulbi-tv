@@ -25,23 +25,11 @@ export class UserRoles extends Model<UserRoles> {
   })
   id: number;
 
-  @Column({
-    type: DataType.INTEGER,
-  })
+  @ForeignKey(() => Role)
+  @Column({ type: DataType.INTEGER })
   roleId: number;
 
-  @ForeignKey(() => Role)
-  @Column({
-    type: DataType.INTEGER,
-  })
+  @ForeignKey(() => User)
+  @Column({ type: DataType.INTEGER })
   userId: number;
-
-  @Column({ type: DataType.STRING, unique: true, allowNull: false })
-  value: string;
-
-  @Column({ type: DataType.STRING, allowNull: false })
-  description: string;
-
-  @BelongsToMany(() => User, () => UserRoles)
-  users: User[];
 }
